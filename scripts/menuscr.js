@@ -83,7 +83,7 @@ const customshader = {
         uChromaBleed: { value: 0.001 },
         uScanlines: { value: 0.28 },
         uNoise: { value: 0.11 },
-        uVignette: { value: 0.45 }
+        uVignette: { value: 0.4 }
       },
       vertexShader: `
         varying vec2 vUv;
