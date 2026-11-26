@@ -7,16 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=BBH+Bogle&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sounds Of Terror</title>
-    <div class="heading">
-        <h2 class="logo">Sounds Of</h2>
-        <h1 class="logo2 glitch" data-text="Terror">Terror</h1>
-    </div>
-    <div class="options">
-      <div class="button" id="continue" style="display:none;">Continue</div>
-      <div class="button" id="start">Start</div>
-      <div class="button" id="settings">Settings</div>
-      <div class="button" id="quit">Quit</div>
-    </div>
+    
     <style>
     html, body { 
         width: 100%;
@@ -24,6 +15,7 @@
         overflow: hidden;
         background: #000;
     }
+    
     @font-face {
   font-family: 'vcrfont';
   src: url('./assets/font/font.ttf') format('truetype');
@@ -54,6 +46,15 @@
   padding: 0; 
   box-sizing: border-box; 
 }
+.home{
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+  transition: transform 1.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.45s ease;
+}
+
 .heading {
   position: fixed;
   top: 120px;
@@ -70,6 +71,187 @@
   font-size: clamp(4rem, 3vw, 4rem);
   font-family: "BBH Bogle", sans-serif;
   line-height: 1;
+}
+.button1 {
+  color: #fae102;
+  font-size: clamp(2rem, 2.5vw, 2.8rem);
+  font-family: 'vcrfont', sans-serif;
+  line-height: 1;
+  cursor: pointer;
+  user-select: none;
+
+}
+
+.back {
+
+  border-radius: 30px;
+  padding: 10px 24px;
+}
+
+.button1:hover {
+
+  color: #a09001;
+}
+.settings {
+  position: fixed;
+  transform: translate(100%, 0%);
+  inset: 0;
+  padding: 32px 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  z-index: 1000;
+  transform: translate3d(100%, 0, 0);
+  opacity: 1;
+  transition: transform 1.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.45s ease;
+
+}
+
+.headsetting {
+  width: 100%;
+  max-width: 920px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.settingtitle {
+  font-family: 'vcrfont', sans-serif;
+  font-size: clamp(2rem, 3vw, 3rem);
+  color: #ffffff;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  user-select: none;
+}
+.overlay {
+      width: 100%;
+      max-width: 920px;
+      flex: 1;
+      max-height: 76vh;
+      overflow-y: auto;
+
+
+      border-radius: 7px;
+  
+      padding: 32px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      font-family: 'vcrfont', sans-serif;
+    }
+
+    .overlay::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .overlay::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .overlay::-webkit-scrollbar-thumb {
+      background: #ffffff30;
+      border-radius: 999px;
+    }
+
+    .settinggrp {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .headgrp {
+      font-size: 1.4rem;
+      color: #f03c63;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #ffffff20;
+      user-select: none;
+    }
+
+    .setrow {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 6px 0;
+    }
+
+    .labelshi {
+      font-size: 1.35rem;
+      color: #fae102;
+      user-select: none;
+    }
+
+    .selecter {
+      min-width: 190px;
+      padding: 10px 16px;
+      font-family: 'vcrfont', sans-serif;
+      font-size: 1.15rem;
+      color: #fae102;
+      background-color: #0e0e0ecc;
+      border: 1px solid #ffffff33;
+      border-radius: 8px;
+      cursor: pointer;
+      outline: none;
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .selecter:hover,
+    .selecter:focus {
+      border-color: #fae102;
+      background-color: #1a1a1ae6;
+    }
+
+    .selecter option {
+      background-color: #111111;
+      color: #fae102;
+    }
+
+    .range {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 190px;
+      height: 6px;
+      background: #ffffff2b;
+      border-radius: 999px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .range::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #fae102;
+      cursor: pointer;
+      transition: transform 0.12s ease;
+    }
+
+    .range::-webkit-slider-thumb:hover {
+      transform: scale(1.15);
+    }
+
+    .range::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+      border: none;
+      border-radius: 50%;
+      background: #fae102;
+      cursor: pointer;
+    }
+.back{
+  border-radius: 30px;
+  cursor: pointer;
+}
+.button1:hover{
+  background-color: #ffffff1f;
+  color: #a09001;
+  border-radius: 30px;
+  cursor: pointer;
 }
 .glitch {
   position: relative;
@@ -127,6 +309,106 @@
   </script>
   </head>
   <body>
+    <div class="home" id="home">
+    <div class="heading">
+        <h2 class="logo">Sounds Of</h2>
+        <h1 class="logo2 glitch" data-text="Terror">Terror</h1>
+    </div>
+    <div class="options">
+      <div class="button" id="continue" style="display:none;">Continue</div>
+      <div class="button" id="start">Start</div>
+      <div class="button" id="settings">Settings</div>
+      <div class="button" id="quit">Quit</div>
+    </div>
+    </div>
+    <div class="settings" id="settingsid">
+    <div class="headsetting">
+      <div class="button1 back" id="backbtn"><-</div>
+      <h2 class="settingtitle">Settings</h2>
+    </div>
+
+    <div class="overlay">
+      <div class="settinggrp">
+        <h3 class="headgrp">Graphics</h3>
+
+        <div class="setrow">
+          <label class="labelshi" for="resolution">Resolution</label>
+          <select class="selecter" id="resolution">
+            <option value="low">Low</option>
+            <option value="medium" selected>Medium</option>
+            <option value="high">High</option>
+          </select>
+        </div>
+
+        <div class="setrow">
+          <label class="labelshi" for="shadows">Shadows</label>
+          <select class="selecter" id="shadows">
+            <option value="off">Off</option>
+            <option value="low">Low</option>
+            <option value="medium" selected>Medium</option>
+            <option value="high">High</option>
+          </select>
+        </div>
+
+        <div class="setrow">
+          <label class="labelshi">VHS Filter</label>
+          <select class="selecter" id="vhs">
+            <option value="on" selected>On</option>
+            <option value="off">Off</option>
+          </select>
+        </div>
+
+        <div class="setrow">
+          <label class="labelshi" for="bloom">Bloom</label>
+          <select class="selecter" id="bloom">
+            <option value="on" selected>On</option>
+            <option value="off">Off</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="settinggrp">
+        <h3 class="headgrp">Audio</h3>
+
+        <div class="setrow">
+          <label class="labelshi">Master Volume</label>
+          <input class="range" id="mastervol" type="range" min="0" max="100" value="80">
+        </div>
+
+        <div class="setrow">
+          <label class="labelshi">SFX Volume</label>
+          <input class="range" id="sfxvol" type="range" min="0" max="100" value="70">
+        </div>
+
+        <div class="setrow">
+          <label class="labelshi">Ambience</label>
+          <input class="range" id="ambience-vol" type="range" min="0" max="100" value="60">
+        </div>
+      </div>
+
+      <div class="settinggrp">
+        <h3 class="headgrp">Controls</h3>
+
+        <div class="setrow">
+          <label class="labelshi" for="sensitivity">Mouse Sensitivity</label>
+          <input class="range" id="sensitivity" type="range" min="1" max="100" value="50">
+        </div>
+
+        <div class="setrow">
+          <label class="labelshi" for="fov">Field of View</label>
+          <input class="range" id="fov" type="range" min="60" max="100" value="75">
+        </div>
+
+        <div class="setrow">
+          <label class="labelshi">Invert Y-Axis</label>
+          <select class="selecter" id="invert-y">
+            <option value="off" selected>Off</option>
+            <option value="on">On</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
         <script type="module" src="./scripts/menuscr.js"></script>
 
     <script type="module" src="./scripts/audioengine.js"></script>
