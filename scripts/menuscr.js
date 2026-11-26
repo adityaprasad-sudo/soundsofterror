@@ -120,7 +120,7 @@ const customshader = {
             gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0);
             return;
           }
-          float wobble = sin(uv.y * 40.0 + uTime * 8.0) * 0.0007 * uTracking;
+          float wobble = sin(uv.y * 40.0 + uTime * 8.0) * 0.00007 * uTracking;
           float bandPos = fract(uTime * 0.12);
           float bandMask = smoothstep(0.05, 0.0, abs(uv.y - bandPos));
           float bandJitter = (rand(vec2(floor(uv.y * 160.0), floor(uTime * 30.0))) - 0.5) * 0.035 * bandMask * uTracking;

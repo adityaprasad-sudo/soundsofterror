@@ -12,10 +12,10 @@
         <h1 class="logo2 glitch" data-text="Terror">Terror</h1>
     </div>
     <div class="options">
-        <div class="menubtns" style="display:none">Continue</div>
-        <div class="menubtns">start</div>
-        <div class="menubtns">options</div>
-        <div class="menubtns">about</div>
+      <div class="button" id="continue" style="display:none;">Continue</div>
+      <div class="button" id="start">Start</div>
+      <div class="button" id="settings">Settings</div>
+      <div class="button" id="quit">Quit</div>
     </div>
     <style>
     html, body { 
@@ -24,6 +24,31 @@
         overflow: hidden;
         background: #000;
     }
+    @font-face {
+  font-family: 'vcrfont';
+  src: url('./assets/font/font.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+.button:hover::before {
+  content: ">";
+}
+    .options{
+      font-family: 'vcrfont', sans-serif;
+        position: fixed;
+        top: calc(100% - 50%);
+        left: 95px;
+        font-weight: 10;
+        display: flex;
+        flex-direction: column;
+        align-items: left;
+        gap: 4px;
+        font-size: 40px;
+        color: #fae102 ;
+        z-index: 1000;
+        cursor: pointer;
+    }
     * {
   margin: 0;
   padding: 0; 
@@ -31,7 +56,7 @@
 }
 .heading {
   position: fixed;
-  top: 150px;
+  top: 120px;
   left: 90px;
   display: flex;
   flex-direction: column;
@@ -102,6 +127,8 @@
   </script>
   </head>
   <body>
-    <script type="module" src="./scripts/menuscr.js"></script>
+        <script type="module" src="./scripts/menuscr.js"></script>
+
+    <script type="module" src="./scripts/audioengine.js"></script>
   </body>
 </head>
