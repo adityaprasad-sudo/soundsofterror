@@ -72,7 +72,7 @@ if (target) {
         console.error(error)
     }
 )
-
+const target = new THREE.Vector3(0,0,1);
 const customshader = {
       uniforms: {
         tDiffuse: { value: null },
@@ -83,7 +83,7 @@ const customshader = {
         uChromaBleed: { value: 0.001 },
         uScanlines: { value: 0.28 },
         uNoise: { value: 0.11 },
-        uVignette: { value: 0.45 }
+        uVignette: { value: 0.4 }
       },
       vertexShader: `
         varying vec2 vUv;
@@ -120,7 +120,7 @@ const customshader = {
             gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0);
             return;
           }
-          float wobble = sin(uv.y * 40.0 + uTime * 8.0) * 0.0007 * uTracking;
+          float wobble = sin(uv.y * 40.0 + uTime * 8.0) * 0.00007 * uTracking;
           float bandPos = fract(uTime * 0.12);
           float bandMask = smoothstep(0.05, 0.0, abs(uv.y - bandPos));
           float bandJitter = (rand(vec2(floor(uv.y * 160.0), floor(uTime * 30.0))) - 0.5) * 0.035 * bandMask * uTracking;
@@ -170,10 +170,27 @@ window.addEventListener('resize', () => {
 })
 const clock = new THREE.Clock()
 function animate() {
+   
     const delta = clock.getDelta()
     vhs.uniforms.uTime.value += delta
+    camera.position.lerp(target, 1 - Math.exp(-7 * delta))
     composer.render()
     requestAnimationFrame(animate)
 }
 animate()
-
+const home = document.getElementById('home')
+const settings = document.getElementById('settings')
+const settingsmenu = document.getElementById('settingsid')
+const back = document.getElementById('backbtn')
+back.addEventListener('click', () => {
+  home.style.transform = 'translate(0%, 0%)';
+  home.style.opacity = '1';
+  settingsmenu.style.transform = 'translate(100%, 0%)';
+  target.set(0,0,1)
+})
+settings.addEventListener('click', () => {
+  home.style.transform = 'translate(-100%, 0%)';
+  home.style.opacity = '0';
+  settingsmenu.style.transform = 'translate(0%, 0%)';
+  target.set(0.5,0,0)
+})
