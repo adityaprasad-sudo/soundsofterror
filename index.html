@@ -23,7 +23,7 @@
   font-style: normal;
   font-display: swap;
 }
-.button:hover::before {
+.button:hover::before{
   content: ">";
 }
     .options{
@@ -337,6 +337,7 @@
             <option value="low">Low</option>
             <option value="medium" selected>Medium</option>
             <option value="high">High</option>
+            <option value="ultra">Ultra</option>
           </select>
         </div>
 
@@ -406,6 +407,14 @@
             <option value="on">On</option>
           </select>
         </div>
+        <div class="setrow">
+  <label class="labelshi">Antialiasing</label>
+  <select class="selecter" id="aa">
+    <option value="off">Off</option>
+    <option value="fxaa" selected>FXAA (Fast)</option>
+    <option value="smaa">SMAA (Sharp)</option>
+  </select>
+</div>
       </div>
     </div>
   </div>

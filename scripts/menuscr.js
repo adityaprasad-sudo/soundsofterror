@@ -8,8 +8,9 @@ import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
     import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js'
-import { FontLoader } from 'three/addons/loaders/FontLoader.js';
-import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
+import { SMAAPass } from 'three/addons/postprocessing/SMAAPass.js';
+import { FXAAShader } from 'three/addons/shaders/FXAAShader.js';
+import { gamesettings } from './settings.js';
 const scene = new THREE.Scene()
 scene.background = new THREE.Color(0xD48ECD)
 const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.01, 1000)
@@ -42,7 +43,7 @@ const draco = new DRACOLoader()
 draco.setDecoderPath('https://unpkg.com/three@0.170.0/examples/jsm/libs/draco/gltf/')
 const gltf = new GLTFLoader()
 gltf.setDRACOLoader(draco)
-const modelp = './assets/menuhome/final.glb'
+const modelp = './assets/menuhome/finaq_opt.glb'
 gltf.load(
     modelp,
     (gltf) =>{
@@ -155,9 +156,45 @@ const bloompass = new UnrealBloomPass(
     0.85
 )
 composer.addPass(bloompass)
-composer.addPass(new OutputPass())
+
 const vhs = new ShaderPass(customshader)
+const smaa = new SMAAPass(window.innerWidth, window.innerHeight)
+composer.addPass(smaa)
+composer.addPass(new OutputPass())
 composer.addPass(vhs)
+const fxaa = new ShaderPass(FXAAShader)
+composer.addPass(fxaa)
+const resmap = {
+  low: 0.50,
+  medium: 0.75,
+  high: 1,
+  ultra: Math.min(window.devicePixelRatio, 2)
+}
+function applygrap(){
+const w = window.innerWidth
+const h = window.innerHeight
+const pr = resmap[gamesettings.resolution] ?? 1;
+renderer.setPixelRatio(pr)
+renderer.setSize(w, h)
+renderer.setPixelRatio(pr)
+composer.setSize(w, h)
+bloompass.setSize(w * 0.5, h * 0.5)
+fxaa.material.uniforms['resolution'].value.set(1 / (w * pr), 1 / (h * pr))
+vhs.uniforms.uResolution.value.set(w, h)
+smaa.enabled = gamesettings.aa === 'smaa'
+fxaa.enabled = gamesettings.aa === 'fxaa'
+bloompass.enabled = gamesettings.bloom === 'on'
+vhs.enabled = gamesettings.vhs === 'on'
+renderer.shadowMap.enabled = gamesettings.shadows === 'on'
+}
+applygrap()
+window.addEventListener('settingschange', applygrap)
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight
+  camera.updateProjectionMatrix()
+  applygrap()
+})
+
 window.addEventListener('resize', () => {
     const w = window.innerWidth
     const h = window.innerHeight
@@ -194,3 +231,4 @@ settings.addEventListener('click', () => {
   settingsmenu.style.transform = 'translate(0%, 0%)';
   target.set(0.5,0,0)
 })
+
