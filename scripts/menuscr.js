@@ -43,7 +43,7 @@ const draco = new DRACOLoader()
 draco.setDecoderPath('https://unpkg.com/three@0.170.0/examples/jsm/libs/draco/gltf/')
 const gltf = new GLTFLoader()
 gltf.setDRACOLoader(draco)
-const modelp = './assets/menuhome/finaq_opt.glb'
+const modelp = './assets/menuhome/finaloptimized.glb'
 gltf.load(
     modelp,
     (gltf) =>{
